@@ -972,7 +972,7 @@ select {
   min-height: 400px;
   background:
     linear-gradient(180deg, rgba(37, 39, 36, 0.15), rgba(37, 39, 36, 0.38)),
-    url("images/hero.png") center/cover no-repeat;
+    url("Images/hero.png") center/cover no-repeat;
   border: 1px solid #d8d3cd;
 }
 
