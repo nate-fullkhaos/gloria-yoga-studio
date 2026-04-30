@@ -23,19 +23,20 @@
     <section class="hero home-hero">
       <div class="container">
         <div class="hero-media">
-          <div class="image-placeholder hero-shot"></div>
-          <div class="home-hero-copy">
-            <p class="eyebrow" data-motion style="--motion-delay: 0ms">PsyYogshala</p>
-            <h1 data-motion style="--motion-delay: 70ms">Breathe. Move. Transform.</h1>
-            <p class="lead home-lead" data-motion style="--motion-delay: 135ms">Daily Yoga for Strength, Balance &amp; Inner Calm</p>
-            <p class="lead" data-motion style="--motion-delay: 190ms">
-              Build a practice that supports your body and your life. Join guided yoga
-              sessions led by a Certified RYT 500 Hatha Yoga Instructor — designed for
-              all levels, with specialized care for prenatal and postpartum journeys.
-            </p>
-            <div class="button-row center-row" data-motion style="--motion-delay: 250ms">
-              <a class="btn btn-primary" href="contact.html">Book a Call</a>
-              <a class="btn btn-light" href="schedule.html">View Schedule</a>
+          <div class="image-placeholder hero-shot">
+            <div class="home-hero-copy">
+              <p class="eyebrow" data-motion style="--motion-delay: 0ms">PsyYogshala</p>
+              <h1 data-motion style="--motion-delay: 70ms">Breathe. Move. Transform.</h1>
+              <p class="lead home-lead" data-motion style="--motion-delay: 135ms">Daily Yoga for Strength,<br class="headline-break--mobile" aria-hidden="true">Balance &amp; Inner Calm</p>
+              <p class="lead" data-motion style="--motion-delay: 190ms">
+                Build a practice that supports your body and your life. Join guided yoga
+                sessions led by a Certified RYT 500 Hatha Yoga Instructor — designed for
+                all levels, with specialized care for prenatal and postpartum journeys.
+              </p>
+              <div class="button-row center-row" data-motion style="--motion-delay: 250ms">
+                <a class="btn btn-primary" href="contact.html">Book a Call</a>
+                <a class="btn btn-light" href="schedule.html">View Schedule</a>
+              </div>
             </div>
           </div>
         </div>
@@ -64,7 +65,7 @@
 
         <article class="mini-card process-card">
           <div class="process-card-media">
-            <img class="mini-image" src="Images/membership.png" alt="Schedule and book">
+            <img class="mini-image" src="Images/schedule.png" alt="Schedule and book">
             <div class="process-card-overlay">
               <span class="step-number">02</span>
               <h3>Book a Call</h3>
@@ -74,7 +75,7 @@
 
         <article class="mini-card process-card">
           <div class="process-card-media">
-            <img class="mini-image" src="Images/schedule.png" alt="Start your practice">
+            <img class="mini-image" src="Images/membership.png" alt="Start your practice">
             <div class="process-card-overlay">
               <span class="step-number">03</span>
               <h3>Start Your Practice</h3>
@@ -316,21 +317,6 @@
       </div>
     </section>
 
-    <section class="section section-soft newsletter-block">
-      <div class="container center-copy" data-motion>
-        <h2>Keep Up With PsyYogshala</h2>
-        <p class="small-text">
-          Get gentle practice updates, schedule reminders, and new program announcements.
-        </p>
-        <form class="newsletter-form" action="#" method="post">
-          <input type="text" name="first_name" placeholder="First name" aria-label="First name" autocomplete="given-name">
-          <input type="tel" name="phone" placeholder="Phone number" aria-label="Phone number" autocomplete="tel">
-          <input type="email" name="email" placeholder="Email address" aria-label="Email address" autocomplete="email">
-          <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
-      </div>
-    </section>
-
   </main>
 
   <footer class="site-footer">
@@ -348,6 +334,61 @@
     </div>
   </footer>
 
+  <div
+    id="book-contact-modal"
+    class="site-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="book-modal-title"
+    hidden
+  >
+    <button type="button" class="site-modal__backdrop" data-modal-close tabindex="-1" aria-label="Close booking form"></button>
+    <div class="site-modal__panel card contact-form-card">
+      <button type="button" class="site-modal__close" data-modal-close aria-label="Close">×</button>
+      <h2 id="book-modal-title" class="contact-form-heading">Book with us</h2>
+      <p class="small-text site-modal__intro">
+        Tell us what you’re looking for — we’ll reply with next steps.
+      </p>
+      <form class="contact-form" action="#" method="post">
+        <div class="contact-form-field">
+          <label for="modal-contact-name">Name</label>
+          <input id="modal-contact-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="contact-form-field">
+          <label for="modal-contact-email">Email</label>
+          <input id="modal-contact-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="contact-form-field">
+          <label for="modal-contact-phone">Phone <span class="contact-label-optional">(optional)</span></label>
+          <input id="modal-contact-phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+        <div class="contact-form-field">
+          <label for="modal-contact-program">What program are you interested in?</label>
+          <select id="modal-contact-program" name="program" required autocomplete="off">
+            <option value="" disabled selected>Select a program…</option>
+            <option value="21-day-consistency">21-Day Consistency Program</option>
+            <option value="morning-reset">Morning Reset Program</option>
+            <option value="general-yoga">General Yoga Practice</option>
+            <option value="prenatal">Prenatal Yoga</option>
+            <option value="postpartum">Postpartum Recovery</option>
+            <option value="drop-in">Drop-In Sessions</option>
+            <option value="undecided">Still deciding — help me choose</option>
+          </select>
+        </div>
+        <div class="contact-form-field">
+          <label for="modal-contact-message">Message</label>
+          <textarea id="modal-contact-message" name="message" rows="5" required></textarea>
+        </div>
+        <button class="btn btn-primary contact-send-btn site-modal__submit" type="submit">
+          → Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="sheet-config.js" defer></script>
+  <script src="sheet-submit.js" defer></script>
+  <script src="book-contact-modal.js" defer></script>
   <script src="motion.js" defer></script>
   <script src="carousel.js" defer></script>
 </body>

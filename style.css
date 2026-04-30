@@ -968,21 +968,44 @@ select {
   position: relative;
 }
 
-.hero-shot {
+.hero-shot.image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   min-height: 400px;
+  padding: 1.35rem clamp(0.95rem, 3.2vw, 1.75rem) 1.6rem;
+  border: 1px solid #d8d3cd;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: revert;
+  font-weight: revert;
+  color: inherit;
   background:
     linear-gradient(180deg, rgba(37, 39, 36, 0.15), rgba(37, 39, 36, 0.38)),
     url("Images/hero.png") center/cover no-repeat;
-  border: 1px solid #d8d3cd;
+}
+
+/* Inner pages — center headline stack inside the hero image panel */
+.hero-shot.image-placeholder:has(.about-hero-intro) {
+  justify-content: center;
+  padding-block: clamp(1.85rem, 5vw, 3.35rem);
+}
+
+/* Home hero — pin copy toward bottom on larger screens */
+.hero-shot.image-placeholder:not(:has(.about-hero-intro)) {
+  justify-content: flex-end;
+  padding-bottom: 1.5rem;
 }
 
 .home-hero-copy {
-  position: absolute;
-  left: 50%;
-  bottom: 1.6rem;
-  transform: translateX(-50%);
+  flex-shrink: 0;
+  position: relative;
   width: min(86%, 760px);
-  max-width: calc(100% - 1.5rem);
+  max-width: 100%;
   z-index: 1;
   background: rgb(252 250 246 / 59%);
   border: 1px solid rgba(230, 224, 215, 0.95);
@@ -992,16 +1015,13 @@ select {
   padding: 1.15rem 1.2rem 1.25rem;
 }
 
+.home-hero-copy.about-hero-intro {
+  transform: none;
+}
+
 .home-hero-copy .lead {
   margin-left: auto;
   margin-right: auto;
-}
-
-/* About hero: center copy block vertically on .hero-shot (index keeps bottom alignment) */
-.home-hero-copy.about-hero-intro {
-  top: 50%;
-  bottom: auto;
-  transform: translate(-50%, -50%);
 }
 
 .home-lead {
@@ -1350,90 +1370,117 @@ select {
     border-color 0.3s ease;
 }
 
-.newsletter-block {
-  background: #efdfcf;
+.form-feedback {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
-.newsletter-form {
+.form-feedback.is-success {
+  color: #355a40;
+}
+
+.form-feedback.is-error {
+  color: #823434;
+}
+
+.contact-form-card .form-feedback {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+/* Home: book CTA opens contact form modal (index only) */
+.site-modal[hidden] {
+  display: none !important;
+}
+
+.site-modal:not([hidden]) {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
   display: flex;
-  flex-direction: column;
-  gap: 0.72rem;
-  max-width: 420px;
-  margin: 1.35rem auto 0;
-  padding: 1.35rem 1.3rem;
-  border-radius: 16px;
-  background: linear-gradient(165deg, rgba(255, 254, 251, 0.97) 0%, rgba(250, 244, 234, 0.96) 100%);
-  border: 1px solid rgba(186, 168, 145, 0.45);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.7) inset,
-    0 12px 36px rgba(74, 58, 44, 0.08);
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.42s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s ease;
-}
-
-.newsletter-form::before {
-  content: "";
-  display: block;
-  width: 2.75rem;
-  height: 3px;
-  margin: -0.1rem auto 0.85rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(106, 127, 114, 0.55), transparent);
-}
-
-.newsletter-form input {
-  margin: 0;
-  width: 100%;
-  padding: 0.82rem 1rem;
-  border-radius: 11px;
-  border: 1px solid #d0c7bb;
-  background: #fff;
-  font-size: 0.94rem;
-  color: var(--text);
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.newsletter-form input::placeholder {
-  color: #999288;
-}
-
-.newsletter-form input:hover {
-  border-color: #c4b9ab;
-}
-
-.newsletter-form input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(106, 127, 114, 0.22);
-}
-
-.newsletter-form .btn {
-  align-self: stretch;
+  align-items: flex-start;
   justify-content: center;
-  margin-top: 0.2rem;
-  padding: 0.72rem 1.1rem;
-  border-radius: 11px;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.28) inset,
-    0 10px 26px rgba(58, 78, 65, 0.22);
+  padding: 1.25rem 1rem 2rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.site-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: rgba(37, 35, 32, 0.48);
+  cursor: pointer;
+}
+
+.site-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 32rem;
+  margin-block: 0.35rem auto;
+  max-height: min(90vh, 52rem);
+  overflow-y: auto;
+  padding: clamp(1.25rem, 4vw, 1.85rem);
+  box-sizing: border-box;
+  border-radius: var(--radius-md, 12px);
+}
+
+.site-modal__panel .contact-form-heading {
+  padding-right: 2.25rem;
+}
+
+.site-modal__intro {
+  text-align: center;
+  margin: -0.35rem 0 1rem;
+}
+
+.site-modal__close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  border: 1px solid rgba(210, 202, 189, 0.85);
+  border-radius: 10px;
+  background: rgba(252, 250, 246, 0.96);
+  color: var(--text);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
   transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
+    background 0.18s ease,
+    border-color 0.18s ease;
 }
 
-.newsletter-form .btn:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.35) inset,
-    0 14px 32px rgba(58, 78, 65, 0.26);
+.site-modal__close:hover {
+  background: #fff;
+  border-color: rgba(106, 127, 114, 0.35);
 }
 
-.newsletter-form .btn:active {
-  transform: translateY(0);
+.site-modal__close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(106, 127, 114, 0.28);
+}
+
+.site-modal__submit.contact-send-btn {
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 680px) {
+  .site-modal__submit.contact-send-btn {
+    align-self: stretch;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 @media (max-width: 980px) {
@@ -1524,17 +1571,21 @@ select {
     padding: 0.95rem 0 1.75rem;
   }
 
-  /* Keep copy overlaid on .hero-shot; image height drives the panel */
-  .hero-shot {
-    min-height: clamp(300px, 130vw, 1200px);
+  /*
+   * .home-hero-copy lives inside .hero-shot so panel height grows with content.
+   * Use a modest min-height plus auto growth; hero-mv on small screens.
+   */
+  .hero-shot.image-placeholder {
+    min-height: clamp(248px, 46vw + 128px, 520px);
+    justify-content: center;
+    padding-block: clamp(1.05rem, 4vw, 1.95rem);
+    background:
+      linear-gradient(180deg, rgba(37, 39, 36, 0.15), rgba(37, 39, 36, 0.38)),
+      url("Images/hero-mv.png") center/cover no-repeat;
   }
 
-  /* Center copy block vertically on hero (index + About) */
   .home-hero-copy {
-    top: 50%;
-    bottom: auto;
-    transform: translate(-50%, -50%);
-    width: min(92%, 760px);
+    width: min(94%, 760px);
     padding: 0.95rem 1rem 1.05rem;
     background: rgb(252 250 246 / 68%);
   }
@@ -1624,14 +1675,6 @@ select {
   .cta-box:not(.cta-box--home) .cta-box-action .btn {
     width: 100%;
     text-align: center;
-  }
-
-  .newsletter-form {
-    max-width: none;
-    width: min(440px, 100%);
-    margin-inline: auto;
-    padding-inline: 1rem;
-    box-sizing: border-box;
   }
 
   .footer-wrap {
@@ -2372,7 +2415,7 @@ select {
 @media (max-width: 599px) {
   .programs-grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
+    gap: 3rem;
   }
 
   .programs-main .programs-grid .program-card.card {
@@ -2778,14 +2821,6 @@ select {
 
   .btn.btn-cta-secondary:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  }
-
-  .newsletter-form:hover {
-    transform: translateY(-3px);
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.82) inset,
-      0 18px 44px rgba(74, 58, 44, 0.12);
-    border-color: rgba(186, 168, 145, 0.6);
   }
 
   .testimonial-card:hover {
