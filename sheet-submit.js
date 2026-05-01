@@ -124,8 +124,13 @@
     submitJsonp(url, payload)
       .then(function (result) {
         if (result && result.ok) {
-          show(box, "Thanks — your details were submitted.", "ok");
           form.reset();
+          try {
+            form.dispatchEvent(new CustomEvent("psyyog-contact-success", { bubbles: true }));
+          } catch (_) {}
+          if (!form.hasAttribute("data-silent-success-feedback")) {
+            show(box, "Thanks — your details were submitted.", "ok");
+          }
         } else {
           var hint =
             result && result.error
