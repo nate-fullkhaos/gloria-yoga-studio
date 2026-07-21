@@ -675,6 +675,125 @@ a {
   box-shadow: none;
 }
 
+/* ----- Home: Studio launch banner ----- */
+.launch-banner-section {
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.launch-banner {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem 1.75rem;
+  background: linear-gradient(140deg, #5d7568 0%, #465c52 42%, #3a4d45 100%);
+  color: #f8f6f1;
+  border-radius: 18px;
+  padding: clamp(1.4rem, 3.4vw, 2rem) clamp(1.35rem, 3.4vw, 2.25rem);
+  box-shadow:
+    0 4px 0 rgba(47, 59, 52, 0.04),
+    0 18px 40px rgba(38, 48, 42, 0.2);
+}
+
+.launch-banner__pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.launch-banner__pattern svg {
+  width: 100%;
+  height: 100%;
+}
+
+.launch-banner__content {
+  position: relative;
+  max-width: 34rem;
+}
+
+.launch-banner__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.32rem 0.78rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f4f2ec;
+  margin-bottom: 0.75rem;
+}
+
+.launch-banner__dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #d9e6db;
+}
+
+.launch-banner__dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  border: 2px solid rgba(217, 230, 219, 0.5);
+  animation: launch-banner-ping 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes launch-banner-ping {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.launch-banner__title {
+  margin: 0 0 0.45rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.launch-banner__lead {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: rgba(248, 246, 241, 0.82);
+}
+
+.launch-banner__cta {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .launch-banner__dot::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .launch-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .launch-banner__cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .btn-cta-secondary:hover {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.62);
@@ -2184,7 +2303,7 @@ select {
 
 .schedule-class-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.15rem clamp(1rem, 2.2vw, 1.35rem);
   align-items: stretch;
 }
