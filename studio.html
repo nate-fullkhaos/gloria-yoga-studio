@@ -33,6 +33,7 @@
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/programs">Programs</a>
+        <a class="active" href="/studio">Studio</a>
         <a href="/contact">Contact</a>
       </nav>
     </div>
@@ -170,13 +171,7 @@
     <section class="studio-section studio-section--soft studio-address">
       <div class="container studio-address__grid">
         <div class="studio-address__media" data-motion>
-          <div class="studio-address__ph" role="img" aria-label="Studio exterior photo placeholder">
-            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13z"/>
-              <circle cx="12" cy="9" r="2.5"/>
-            </svg>
-            <span>Studio exterior photo</span>
-          </div>
+          <img class="studio-address__img" src="Images/studio-out.jpeg" alt="Exterior of the PsyYogshala studio in Mangalore" loading="lazy">
         </div>
 
         <article class="studio-address__card" data-motion style="--motion-delay: 80ms">
@@ -209,53 +204,56 @@
           </h2>
         </header>
 
-        <ul class="studio-chip-grid studio-chip-grid--3x3 studio-chip-grid--desc motion-stagger-children" data-motion role="list">
-          <li class="studio-chip">
-            <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🧘🏽‍♀️</span>
-            <span class="studio-chip__label">Traditional Hatha Flow</span>
-            <span class="studio-chip__desc">The root of your practice—classic postures and steady pacing found in your morning flows.</span>
-          </li>
-          <li class="studio-chip">
-            <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">💪🏽</span>
-            <span class="studio-chip__label">Dumbbell Strength Integration</span>
-            <span class="studio-chip__desc">Reflecting your unique 8 PM Strength Flow that blends resistance with yoga.</span>
-          </li>
-          <li class="studio-chip">
-            <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🧱</span>
-            <span class="studio-chip__label">Prop-Supported Alignment</span>
-            <span class="studio-chip__desc">Highlighting your use of blocks, straps, and chairs for a safer, deeper practice.</span>
-          </li>
-          <li class="studio-chip">
-            <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🪜</span>
-            <span class="studio-chip__label">Iyengar Rope Tractions</span>
-            <span class="studio-chip__desc">Showcasing your physical studio's unique wall ropes for decompression.</span>
-          </li>
-          <li class="studio-chip">
-            <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">☀️</span>
-            <span class="studio-chip__label">Sunrise Sun Salutations</span>
-            <span class="studio-chip__desc">Honoring the morning ritual, flow, and energy of your 6 AM class.</span>
-          </li>
-          <li class="studio-chip">
-            <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🌬️</span>
-            <span class="studio-chip__label">Pranayama &amp; Breathwork</span>
-            <span class="studio-chip__desc">Authentic breath control rooted in your Patanjali Rishikesh foundation.</span>
-          </li>
-          <li class="studio-chip">
-            <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🌿</span>
-            <span class="studio-chip__label">Mindful Self-Care &amp; Pacing</span>
-            <span class="studio-chip__desc">Creating space to pause and recharge, specifically curated for mothers and busy professionals.</span>
-          </li>
-          <li class="studio-chip">
-            <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🔄</span>
-            <span class="studio-chip__label">Mobility &amp; Joint Stability</span>
-            <span class="studio-chip__desc">The “intelligent movement” element ensuring you build strength without losing flexibility.</span>
-          </li>
-          <li class="studio-chip">
-            <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🕊️</span>
-            <span class="studio-chip__label">Deep Conscious Relaxation</span>
-            <span class="studio-chip__desc">The essential wind-down at the end of every flow to reset your nervous system.</span>
-          </li>
-        </ul>
+        <div class="studio-practice-carousel" data-practice-carousel>
+          <ul class="studio-chip-grid studio-chip-grid--3x3 studio-chip-grid--desc motion-stagger-children" data-motion role="list">
+            <li class="studio-chip">
+              <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🧘🏽‍♀️</span>
+              <span class="studio-chip__label">Traditional Hatha Flow</span>
+              <span class="studio-chip__desc">The root of your practice—classic postures and steady pacing found in your morning flows.</span>
+            </li>
+            <li class="studio-chip">
+              <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">💪🏽</span>
+              <span class="studio-chip__label">Dumbbell Strength Integration</span>
+              <span class="studio-chip__desc">Reflecting your unique 8 PM Strength Flow that blends resistance with yoga.</span>
+            </li>
+            <li class="studio-chip">
+              <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🧱</span>
+              <span class="studio-chip__label">Prop-Supported Alignment</span>
+              <span class="studio-chip__desc">Highlighting your use of blocks, straps, and chairs for a safer, deeper practice.</span>
+            </li>
+            <li class="studio-chip">
+              <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🪜</span>
+              <span class="studio-chip__label">Iyengar Rope Tractions</span>
+              <span class="studio-chip__desc">Showcasing your physical studio's unique wall ropes for decompression.</span>
+            </li>
+            <li class="studio-chip">
+              <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">☀️</span>
+              <span class="studio-chip__label">Sunrise Sun Salutations</span>
+              <span class="studio-chip__desc">Honoring the morning ritual, flow, and energy of your 6 AM class.</span>
+            </li>
+            <li class="studio-chip">
+              <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🌬️</span>
+              <span class="studio-chip__label">Pranayama &amp; Breathwork</span>
+              <span class="studio-chip__desc">Authentic breath control rooted in your Patanjali Rishikesh foundation.</span>
+            </li>
+            <li class="studio-chip">
+              <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🌿</span>
+              <span class="studio-chip__label">Mindful Self-Care &amp; Pacing</span>
+              <span class="studio-chip__desc">Creating space to pause and recharge, specifically curated for mothers and busy professionals.</span>
+            </li>
+            <li class="studio-chip">
+              <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🔄</span>
+              <span class="studio-chip__label">Mobility &amp; Joint Stability</span>
+              <span class="studio-chip__desc">The “intelligent movement” element ensuring you build strength without losing flexibility.</span>
+            </li>
+            <li class="studio-chip">
+              <span class="studio-chip__icon studio-chip__icon--emoji" aria-hidden="true">🕊️</span>
+              <span class="studio-chip__label">Deep Conscious Relaxation</span>
+              <span class="studio-chip__desc">The essential wind-down at the end of every flow to reset your nervous system.</span>
+            </li>
+          </ul>
+          <div class="studio-practice-carousel__dots" role="tablist" aria-label="Practice highlights"></div>
+        </div>
       </div>
     </section>
 
@@ -594,8 +592,13 @@
         ·
         <a href="/programs">Programs</a>
         ·
+        <a href="/studio">Studio</a>
+        ·
         <a href="/contact">Contact</a>
       </p>
+    </div>
+    <div class="container footer-bottom">
+      <p class="footer-copyright">&copy; PsyYogshala 2026. All Rights Reserved.</p>
     </div>
   </footer>
 
