@@ -1,0 +1,12 @@
+.DS_Store
+**/.DS_Store
+.cursor/
+*.log
+.vercel
+
+# Source / unused studio media — keep these out of git
+Images/*.HEIC
+Images/*.heic
+Images/*.pdf
+Images/*.mp4
+Images/old*
