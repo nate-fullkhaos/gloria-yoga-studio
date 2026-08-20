@@ -3978,9 +3978,12 @@ select {
    ============================================================ */
 .studio-price-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
   align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  margin-inline: auto;
 }
 .studio-checkout-panel {
   scroll-margin-top: calc(4.5rem + env(safe-area-inset-top));
@@ -4034,6 +4037,8 @@ select {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+  min-width: 0;
   padding: 1.6rem 1.4rem 1.5rem;
   background: #fff;
   border: 1px solid var(--studio-line);
@@ -4321,7 +4326,7 @@ select {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1200px) {
-  .studio-price-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .studio-price-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 980px) {
