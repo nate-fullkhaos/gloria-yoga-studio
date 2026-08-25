@@ -1422,6 +1422,11 @@ select {
   transform: none;
 }
 
+.home-hero-copy.about-hero-intro .eyebrow {
+  margin-bottom: 0.45rem;
+  color: var(--primary-dark);
+}
+
 .home-hero-copy .lead {
   margin-left: auto;
   margin-right: auto;
@@ -2283,6 +2288,222 @@ select {
   }
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.psy-framework-head {
+  max-width: 46rem;
+  margin-bottom: 0;
+}
+
+.psy-framework-story {
+  margin: 1rem auto 0;
+  max-width: 42rem;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.psy-framework-head + .psy-interactive-grid {
+  margin-top: 1.75rem;
+}
+
+.psy-interactive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.psy-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.1rem 1.2rem;
+  box-shadow: var(--shadow);
+  transition:
+    border-color 0.28s ease,
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.psy-card[open] {
+  border-color: rgba(106, 127, 114, 0.45);
+  box-shadow: 0 16px 36px rgba(62, 56, 48, 0.1);
+}
+
+.psy-card summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.psy-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.psy-card summary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.psy-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.psy-letter {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--primary-dark);
+}
+
+.psy-expand {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 0.28s ease;
+}
+
+.psy-card[open] .psy-expand {
+  transform: rotate(45deg);
+}
+
+.psy-title {
+  margin: 0.55rem 0 0;
+  font-size: 1.22rem;
+}
+
+.psy-title span {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.psy-subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+}
+
+.psy-hint {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.psy-card-body {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.97rem;
+}
+
+.psy-card-body p {
+  margin: 0 0 0.75rem;
+}
+
+.psy-details-list {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.psy-details-list li {
+  margin-bottom: 0.45rem;
+}
+
+.psy-details-list li:last-child {
+  margin-bottom: 0;
+}
+
+.psy-matrix-wrap {
+  margin-top: 1.75rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.psy-matrix {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+}
+
+.psy-matrix th,
+.psy-matrix td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-size: 0.92rem;
+  vertical-align: top;
+}
+
+.psy-matrix thead th {
+  background: var(--primary-dark);
+  color: #f7f5f2;
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.psy-matrix tbody th {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.psy-matrix tbody tr:nth-child(even) {
+  background: rgba(247, 245, 242, 0.7);
+}
+
+.psy-matrix tbody td,
+.psy-matrix tbody th {
+  border-bottom: 1px solid var(--border);
+}
+
+.psy-matrix tbody tr:last-child td,
+.psy-matrix tbody tr:last-child th {
+  border-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .psy-interactive-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psy-expand {
+    transition: none;
+  }
+}
+
 .section-soft.who-for-band {
   background: #f7f5f3;
 }
@@ -2397,16 +2618,18 @@ select {
 }
 
 .instructor-band {
-  align-items: center;
+  align-items: start;
 }
 
 .instructor-copy h2 {
   margin-top: 0;
   margin-bottom: 0.35rem;
+  font-size: clamp(1.35rem, 2.55vw, 1.95rem);
+  line-height: 1.28;
 }
 
 .instructor-copy .instructor-name {
-  margin: 0.35rem 0 1rem;
+  margin: 0.35rem 0 0.35rem;
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(1.02rem, 2.4vw, 2.12rem);
   font-weight: 600;
@@ -2414,8 +2637,24 @@ select {
   color: var(--primary-dark);
 }
 
+.instructor-copy .instructor-cred {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.instructor-copy p {
+  margin-bottom: 0.9rem;
+}
+
 .instructor-copy p:last-child {
   margin-bottom: 0;
+}
+
+.instructor-copy .approach-pullquote {
+  margin-top: 0.35rem;
 }
 
 .instructor-photo {
@@ -2484,6 +2723,11 @@ select {
 @media (min-width: 981px) {
   .instructor-band .instructor-photo img {
     max-width: 100%;
+  }
+
+  .about-main .instructor-photo {
+    position: sticky;
+    top: 5.75rem;
   }
 }
 
