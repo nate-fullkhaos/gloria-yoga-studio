@@ -2424,6 +2424,22 @@ select {
   margin: 0 0 0.75rem;
 }
 
+.psy-card-body .psy-tagline {
+  margin-bottom: 0.85rem;
+}
+
+.psy-card-body .psy-scripture p {
+  margin: 0 0 0.3rem;
+}
+
+.psy-card-body .psy-scripture-title {
+  margin-bottom: 0.75rem;
+}
+
+.psy-card-body .psy-scripture-item:last-child p:last-child {
+  margin-bottom: 0;
+}
+
 .psy-details-list {
   margin: 0;
   padding-left: 1.15rem;
@@ -2435,6 +2451,77 @@ select {
 
 .psy-details-list li:last-child {
   margin-bottom: 0;
+}
+
+.psy-tagline {
+  margin: 0 0 0.85rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border-left: 3px solid rgba(106, 127, 114, 0.55);
+  background: rgba(238, 243, 240, 0.65);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.02rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--primary-dark);
+}
+
+.psy-scripture {
+  margin-top: 1rem;
+  padding: 0.95rem 1rem 1rem;
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+  background: var(--bg-soft);
+}
+
+.psy-scripture-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+}
+
+.psy-scripture-item {
+  margin-bottom: 0.85rem;
+}
+
+.psy-scripture-item:last-child {
+  margin-bottom: 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.psy-scripture-item:first-of-type {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.psy-scripture-source,
+.psy-scripture-sanskrit,
+.psy-scripture-translation {
+  margin: 0 0 0.3rem;
+}
+
+.psy-scripture-source {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.psy-scripture-sanskrit {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.45;
+  color: var(--primary-dark);
+}
+
+.psy-scripture-translation {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .psy-matrix-wrap {
