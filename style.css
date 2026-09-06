@@ -3779,6 +3779,14 @@ select {
   display: flex;
   flex-direction: column;
 }
+.studio-location__photo {
+  display: block;
+  width: 100%;
+  height: 11.5rem;
+  object-fit: cover;
+  border-radius: calc(var(--studio-radius-lg) - 6px);
+  margin: 0 0 1.1rem;
+}
 .studio-location__title {
   font-family: "Playfair Display", Georgia, serif;
   font-weight: 500;
@@ -4309,7 +4317,7 @@ select {
    ============================================================ */
 .studio-price-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
   align-items: stretch;
   justify-content: center;
@@ -4657,7 +4665,7 @@ select {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1200px) {
-  .studio-price-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .studio-price-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 980px) {
