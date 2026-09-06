@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | PsyYogshala (Visual Mockup)</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-cream: #FDFBF7;
+      --bg-soft: #F4EFEA;
+      --primary-sage: #4E6151;
+      --accent-rose: #C3938B;
+      --text-dark: #2C352E;
+      --text-muted: #5A655C;
+      --card-bg: #FFFFFF;
+      --border-color: #E6E0D8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      color: var(--primary-sage);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section { padding: 80px 0; }
+    .section-soft { background-color: var(--bg-soft); }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-rose);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .eyebrow--center { text-align: center; }
+    .center-copy { text-align: center; }
+
+    /* Nav Header Dummy */
+    header {
+      background: var(--bg-cream);
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 0;
+    }
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+    .logo-placeholder { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: bold; color: var(--primary-sage); }
+    .nav-links a { margin-left: 20px; text-decoration: none; color: var(--text-dark); font-size: 0.95rem; }
+
+    /* 1. Hero Section */
+    .hero {
+      padding: 100px 0 80px 0;
+      text-align: center;
+      background: linear-gradient(180deg, #FDFBF7 0%, #F4EFEA 100%);
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 15px; }
+    .hero p.lead { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+
+    /* 2. Interactive PSY Pillar Cards */
+    .psy-interactive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .psy-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .psy-card:hover {
+      border-color: var(--accent-rose);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .psy-card summary {
+      list-style: none;
+      outline: none;
+    }
+
+    .psy-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .psy-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .psy-letter {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--primary-sage);
+      line-height: 1;
+    }
+
+    .psy-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-top: 8px;
+    }
+
+    .psy-subtitle {
+      font-size: 0.9rem;
+      color: var(--accent-rose);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .expand-icon {
+      font-size: 1.4rem;
+      color: var(--accent-rose);
+      transition: transform 0.3s ease;
+      font-weight: 400;
+    }
+
+    .psy-card[open] .expand-icon {
+      transform: rotate(45deg);
+    }
+
+    .psy-card-body {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .psy-details-list {
+      margin-top: 12px;
+      padding-left: 20px;
+    }
+
+    .psy-details-list li {
+      margin-bottom: 8px;
+    }
+
+    /* Matrix Table */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+    .matrix-table th { background: var(--primary-sage); color: #fff; padding: 15px; text-align: left; }
+    .matrix-table td { padding: 15px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
+
+    /* 3. Instructor Bio */
+    .split-instructor {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: start;
+    }
+    .img-frame {
+      background: var(--border-color);
+      border-radius: 16px;
+      min-height: 450px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      position: sticky;
+      top: 40px;
+      overflow: hidden;
+    }
+
+    /* 4. Who It's For */
+    .who-list { list-style: none; margin-top: 30px; }
+    .who-list li {
+      background: var(--card-bg);
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border-left: 4px solid var(--accent-rose);
+      font-weight: 500;
+    }
+
+    /* 5. CTA */
+    .cta-box {
+      background: var(--primary-sage);
+      color: #fff;
+      text-align: center;
+      padding: 60px 30px;
+      border-radius: 20px;
+    }
+    .cta-box h2 { color: #fff; font-size: 2.2rem; margin-bottom: 15px; }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 10px 5px 0 5px;
+    }
+    .btn-light { background: #fff; color: var(--primary-sage); }
+    .btn-outline { border: 1px solid #fff; color: #fff; }
+
+    @media (max-width: 768px) {
+      .split-instructor { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrap">
+      <div class="logo-placeholder">Psyyogshala</div>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#" style="font-weight:600; color:var(--accent-rose);">About</a>
+        <a href="#">Programs</a>
+        <a href="#">Studio</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 1. HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow eyebrow--center">Welcome to Psyyogshala</span>
+      <h1>A Space to Slow Down and Reconnect</h1>
+      <p class="lead">Yoga that fits your life — not the other way around.</p>
+    </div>
+  </section>
+
+  <!-- 2. BRAND EVOLUTION & PSV FRAMEWORK -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="center-copy" style="max-width: 750px; margin: 0 auto 40px auto;">
+        <span class="eyebrow eyebrow--center">The Psyyogshala Journey</span>
+        <h2>Rooted in Awareness, Growing in Balance</h2>
+        <p style="margin-top: 15px; font-style: italic; color: var(--text-muted);">
+          Five years ago, a trip to Rishikesh sparked a vision. It began as <strong>@psyyogi</strong>—an exploration of movement fused with electric, vibrant energy. But as the practice deepened over years of shared transformation, that energy evolved into an inner radiance, giving birth to <strong>Psyyogshala</strong>.
+        </p>
+      </div>
+
+      <!-- Interactive PSY Pillar Cards -->
+      <div class="psy-interactive-grid">
+        <!-- P: PRĀṆA -->
+        <details class="psy-card">
+          <summary>
+            <div class="psy-card-header">
+              <span class="psy-letter">P</span>
+              <span class="expand-icon">+</span>
+            </div>
+            <h3 class="psy-title">Prāṇa (प्राण)</h3>
+            <p class="psy-subtitle">Breath & Vital Energy</p>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 8px;">
+              Click to explore
+            </p>
+          </summary>
+          <div class="psy-card-body">
+            <p>
+              "<strong>Prāṇa</strong> is the subtle vital force that breathes life into the posture, transforming physical movement into a spiritual awakening."
+
+            </p>
+            <ul class="psy-details-list">
+              <li><strong>Lineage Roots:</strong> Built upon Classical Hatha traditions and Patanjali’s Yoga Sutras.</li>
+              <li><strong>Breath Mastery:</strong> Targeted <em>Pranayama</em> techniques to calm the nervous system and steady mental noise.</li>
+              <li><strong>Inner Presence:</strong> Shifting practice away from aesthetic performance toward deep internal feeling.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- S: ŚAKTI -->
+        <details class="psy-card">
+          <summary>
+            <div class="psy-card-header">
+              <span class="psy-letter">S</span>
+              <span class="expand-icon">+</span>
+            </div>
+            <h3 class="psy-title">Śakti (शक्ति)</h3>
+            <p class="psy-subtitle">Strength & Movement</p>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 8px;">
+              Click to explore vitality, physical power, and stamina.
+            </p>
+          </summary>
+          <div class="psy-card-body">
+            <p>
+              <strong>Śakti</strong> represents dynamic energy, physical resilience, and functional capability. Softness alone is incomplete; true well-being requires a strong, capable physical foundation to support life's daily demands.
+            </p>
+            <ul class="psy-details-list">
+              <li><strong>Core & Stability:</strong> Dynamic sequences designed to strengthen joints, core muscles, and posture.</li>
+              <li><strong>Endurance:</strong> Developing physical stamina through held poses (Asanas) and purposeful movement.</li>
+              <li><strong>Vitality:</strong> Channeling stagnant energy into active, restorative strength on and off the mat.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Y: YUKTI -->
+        <details class="psy-card">
+          <summary>
+            <div class="psy-card-header">
+              <span class="psy-letter">Y</span>
+              <span class="expand-icon">+</span>
+            </div>
+            <h3 class="psy-title">Yukti (युक्ति)</h3>
+            <p class="psy-subtitle">Skill & Intelligence</p>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 8px;">
+              Click to explore biomechanics, alignment, and smart adaptation.
+            </p>
+          </summary>
+          <div class="psy-card-body">
+            <p>
+              <strong>Yukti</strong> is "skill in action"—applying timeless spiritual wisdom through modern anatomical intelligence. It ensures your practice is safe, sustainable, and tailored to your specific body type.
+            </p>
+            <ul class="psy-details-list">
+              <li><strong>Anatomical Precision:</strong> Modern biomechanics and alignment to prevent joint strain and injury.</li>
+              <li><strong>Smart Adaptation:</strong> Modifying classical postures for desk workers, pregnancy, seniors, or recovery.</li>
+              <li><strong>Practical Wisdom:</strong> Translating yogic principles into sustainable daily routines for long-term health.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <!-- Matrix Table -->
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Pillar</th>
+            <th>Essence</th>
+            <th>Traditional Core</th>
+            <th>Modern Application</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Prāṇa</strong></td>
+            <td>Soul & Vital Energy</td>
+            <td>Classical Hatha & Patanjali Sutras</td>
+            <td>Breath mastery & mindfulness</td>
+          </tr>
+          <tr>
+            <td><strong>Śakti</strong></td>
+            <td>Strength & Movement</td>
+            <td>Dynamic Power & Vitality</td>
+            <td>Functional strength & physical endurance</td>
+          </tr>
+          <tr>
+            <td><strong>Yukti</strong></td>
+            <td>Skill & Intelligence</td>
+            <td><em>Yogaḥ Karmasu Kauśalam</em></td>
+            <td>Biomechanics & safe alignment</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 3. MEET GLORIA -->
+  <section class="section">
+    <div class="container">
+      <div class="split-instructor">
+        <div>
+          <span class="eyebrow">Know More About Me</span>
+          <h2 style="font-size: 2.2rem; margin-bottom: 10px;">Meet Your Instructor: Behind the Mat with Gloria</h2>
+          <p style="font-weight: 600; color: var(--accent-rose); margin-bottom: 25px;">Gloria Barbara Menezes (500-Hour RYT)</p>
+          
+          <p style="margin-bottom: 15px;">I didn’t find yoga—it found me when I needed it most. In 2020, while working in the pageant, fashion, and sales industries, I signed up for a Yoga Teacher Training in Rishikesh. To be honest, I initially treated it as a joke—a fun excuse to travel to the mountains where yoga was just a side note.</p>
+          
+          <p style="margin-bottom: 15px;">The training hit me with an intensity I never expected. When I nearly gave up during the first few days, I decided to take it on as a personal challenge instead. I committed to showing up on my mat daily, ultimately finishing the course as a completely transformed person—mentally, physically, and spiritually.</p>
+          
+          <p style="margin-bottom: 15px;">Back home in Mangalore, I channeled that raw Rishikesh energy into disciplined self-study. I studied my course material, practiced every <em>asana</em> step-by-step, and recorded daily time-lapses to track my progress. After teaching at a local studio, I returned to Rishikesh to complete my advanced 300-hour training, bringing my total credentials to 500 hours with the Patanjali International Yoga Foundation.</p>
+          
+          <p style="margin-bottom: 15px;">That practice became my anchor through life’s biggest shifts, including marriage and motherhood. I taught and practiced throughout my pregnancy right up to my final week, adapting my movement to support a safe, healthy delivery for both me and my baby.</p>
+
+          <p>Today, as a mother and dedicated teacher, I view yoga as a lifelong journey of self-discovery. My goal is to offer authentic, personalized guidance that helps you build confidence, deepen your practice, and reconnect with your true self.</p>
+        </div>
+
+        <div class="img-frame">
+          <p>[ Instructor Image Placeholder ]</p>
+          <p style="font-size: 0.85rem; margin-top: 10px;">@psyyogi</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. WHO IT'S FOR -->
+  <section class="section section-soft">
+    <div class="container center-copy" style="max-width: 700px;">
+      <span class="eyebrow eyebrow--center">Who This Is For</span>
+      <h2>Made for Real Life</h2>
+      <ul class="who-list" style="text-align: left;">
+        <li>Beginners starting their yoga journey</li>
+        <li>People returning after a break from practice</li>
+        <li>Busy professionals looking for balance</li>
+        <li>Expecting and new mothers (Prenatal & Postnatal)</li>
+        <li>Anyone looking for a calmer, more consistent routine</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. CALL TO ACTION -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-box">
+        <span class="eyebrow eyebrow--center" style="color: #E6E0D8;">Come As You Are</span>
+        <h2>This Is Your Space</h2>
+        <p style="max-width: 500px; margin: 0 auto 25px auto; color: #E6E0D8;">Show up when you can. Move at your pace. Over time, you’ll start to feel the difference.</p>
+        <div>
+          <a href="#" class="btn btn-light">Book Your Class</a>
+          <a href="#" class="btn btn-outline">View Studio Schedule</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
