@@ -7,6 +7,7 @@
   const slides = Array.from(root.querySelectorAll('.testimonial-card'));
   const prevBtn = root.querySelector('.carousel-prev');
   const nextBtn = root.querySelector('.carousel-next');
+  if (!slides.length || !viewport || !track || !prevBtn || !nextBtn) return;
   const dotsEl =
     root.closest('.center-copy')?.querySelector('.carousel-dots') ??
     document.querySelector('.carousel-dots');

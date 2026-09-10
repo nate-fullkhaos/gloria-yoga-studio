@@ -57,6 +57,13 @@
         "longitude": 74.846217
       },
       "hasMap": "https://maps.app.goo.gl/9u9xJYySYaHkw9UM9",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "16",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
       "sameAs": [
         "https://maps.app.goo.gl/9u9xJYySYaHkw9UM9",
         "https://www.instagram.com/psyyogshala",
@@ -74,9 +81,9 @@
   ]
 }
 </script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=home-hero-4">
 </head>
-<body>
+<body class="home-page">
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="/"><img src="Images/logo-horizontal.png" alt="PsyYogshala"></a>
@@ -91,24 +98,29 @@
   </header>
 
   <main class="main-content home-main">
-    <section class="hero home-hero">
+    <section class="hero home-hero home-hero--cinematic" aria-label="PsyYogshala studio">
+      <div class="hero-carousel" data-hero-carousel aria-hidden="true">
+        <img class="hero-carousel__slide is-active" src="Images/hero1.png" alt="" fetchpriority="high" decoding="async">
+        <img class="hero-carousel__slide" src="Images/hero2.jpg" alt="" decoding="async">
+        <img class="hero-carousel__slide" src="Images/hero3.jpg" alt="" decoding="async">
+        <img class="hero-carousel__slide" src="Images/hero4.jpg" alt="" decoding="async">
+        <img class="hero-carousel__slide" src="Images/about.png" alt="" decoding="async">
+        <img class="hero-carousel__slide" src="Images/instructor.png" alt="" decoding="async">
+        <img class="hero-carousel__slide" src="Images/welcome.png" alt="" decoding="async">
+      </div>
+      <div class="home-hero__veil" aria-hidden="true"></div>
       <div class="container">
-        <div class="hero-media">
-          <div class="image-placeholder hero-shot">
-            <div class="home-hero-copy home-hero-copy--featured">
-              <div class="home-hero-copy__glow" aria-hidden="true"></div>
-              <p class="eyebrow" data-motion style="--motion-delay: 0ms">PsyYogshala</p>
-              <h1 data-motion style="--motion-delay: 70ms">Breathe. Move. Transform.</h1>
-              <p class="lead home-lead" data-motion style="--motion-delay: 135ms">Daily Yoga for Strength, <br class="headline-break--mobile" aria-hidden="true">Balance &amp; Inner Calm</p>
-              <p class="lead" data-motion style="--motion-delay: 190ms">
-                Build a practice that supports your body and your life. Join guided yoga
-                sessions led by a Certified RYT 500 Hatha Yoga Instructor — designed for
-                all levels, with specialized care for prenatal and postpartum journeys.
-              </p>
-              <div class="button-row center-row" data-motion style="--motion-delay: 250ms">
-                <a class="btn btn-primary" href="https://zohosecurepay.in/checkout/n10kfpui-qpbxptgtydyrc/Drop-In-Pass" target="_blank" rel="noopener noreferrer">Book your Class</a>
-              </div>
-            </div>
+        <div class="home-hero-copy home-hero-copy--overlay">
+          <p class="eyebrow" data-motion style="--motion-delay: 0ms">Mangaluru · Live Online &amp; In-Studio</p>
+          <h1 data-motion style="--motion-delay: 70ms">A space dedicated to communal <span class="hero-accent">well-being</span> through mindful movement.</h1>
+          <p class="lead" data-motion style="--motion-delay: 160ms">
+            Traditional Hatha yoga meets modern alignment. Build a practice that supports
+            your body through every stage of life — including specialized prenatal and
+            postpartum care.
+          </p>
+          <div class="button-row" data-motion style="--motion-delay: 230ms">
+            <a class="btn btn-primary" href="https://zohosecurepay.in/checkout/n10kfpui-qpbxptgtydyrc/Drop-In-Pass" target="_blank" rel="noopener noreferrer">Book a Class</a>
+            <a class="btn btn-hero-text" href="/programs">Explore Programs →</a>
           </div>
         </div>
       </div>
@@ -190,41 +202,6 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container split retreats-layout">
-        <article class="timings-panel" data-motion style="--motion-delay: 0ms">
-          <h2 class="timings-panel__title">
-            Choose Your Time.<span class="headline-runon-space"> </span><br class="headline-break--mobile" aria-hidden="true">Honor Your Rhythm.
-          </h2>
-          <ul class="schedule-slot-list" role="list">
-            <li>
-              <span class="schedule-slot-name">Sunrise Flow</span>
-              <span class="schedule-slot-time">6:00 – 7:00 AM</span>
-            </li>
-            <li>
-              <span class="schedule-slot-name">Hatha Yoga Flow</span>
-              <span class="schedule-slot-time">9:00 – 10:00 AM</span>
-            </li>
-            <li>
-              <span class="schedule-slot-name">Foundation Flow</span>
-              <span class="schedule-slot-time">4:00 – 5:00 PM</span>
-            </li>
-            <li>
-              <span class="schedule-slot-name">Strength Flow</span>
-              <span class="schedule-slot-time">8:00 – 9:00 PM</span>
-            </li>
-          </ul>
-          <p class="timings-panel__note">
-            Spaces are limited — mats must be reserved in advance.
-          </p>
-          <div class="button-row timings-panel__actions">
-            <a class="btn btn-primary" href="/studio">View Full Schedule</a>
-          </div>
-        </article>
-        <img class="timings-image" data-motion style="--motion-delay: 90ms" src="Images/time.png" alt="Timings lifestyle">
-      </div>
-    </section>
-
     <section class="section section-soft">
       <div class="container">
         <h2 class="section-title" data-motion>What You Get</h2>
@@ -298,88 +275,50 @@
       </div>
     </section>
 
-    <section class="section section-soft section-compact testimonials-section">
+    <section class="section section-soft section-compact testimonials-section" id="testimonials">
       <div class="container center-copy">
-        <h2 data-motion style="--motion-delay: 0ms">Real Practice. Real Results.</h2>
-        <p class="testimonials-intro" data-motion style="--motion-delay: 70ms">
-          Keep it simple, keep it consistent, and feel the shift in your body and mind.
+        <p class="eyebrow google-reviews-kicker" data-motion style="--motion-delay: 0ms">Google Reviews</p>
+        <h2 data-motion style="--motion-delay: 50ms">Community Testimonials</h2>
+        <p class="testimonials-intro" data-motion style="--motion-delay: 90ms">
+          5.0 from 16 Google reviews — words from students who practice with Gloria in Mangaluru and online.
         </p>
 
-        <div class="testimonials-motion-block" data-motion style="--motion-delay: 120ms">
-        <div class="testimonial-carousel" data-carousel tabindex="0">
-          <button type="button" class="carousel-btn carousel-prev" aria-label="Previous testimonial">‹</button>
-          <div class="carousel-viewport">
-            <div class="carousel-track">
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“I’ve tried a few yoga classes before, but this is the first one I’ve actually stuck to. The sessions are simple, calming, and just feel right.”</p>
-                <p class="testimonial-meta">Ananya · Mangalore</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“I started as a complete beginner and didn’t feel out of place at all. The instructions are clear and easy to follow.”</p>
-                <p class="testimonial-meta">Rohan · Mangalore</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“The online classes fit really well into my routine. I like that I can join live or catch up later if I miss it.”</p>
-                <p class="testimonial-meta">Fatima · Muscat</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“I joined for prenatal yoga and it’s been such a nice experience. I feel more relaxed and comfortable in my body.”</p>
-                <p class="testimonial-meta">Priya · Dubai</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“Super flexible and practical. Some days I join live, some days I just use the recordings. Works well for me.”</p>
-                <p class="testimonial-meta">Arjun · Mangalore</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“It’s become a part of my day now. I always feel lighter and more calm after the sessions.”</p>
-                <p class="testimonial-meta">Sara · Abu Dhabi</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“I like how calm the sessions are. It doesn’t feel rushed, and I can go at my own pace.”</p>
-                <p class="testimonial-meta">Megha · Mangalore</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“I sit a lot for work, and this has really helped with stiffness. I feel more relaxed after every class.”</p>
-                <p class="testimonial-meta">Karthik · Mangalore</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“The timings are perfect for my routine. It’s easy to stay consistent without feeling pressured.”</p>
-                <p class="testimonial-meta">Nisha · Dubai</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“Very easy to follow, even on days when I’m low on energy. That’s what I like the most.”</p>
-                <p class="testimonial-meta">Rahul · Muscat</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“I started just to try it out, but I’ve continued because it actually makes me feel better mentally.”</p>
-                <p class="testimonial-meta">Aisha · Abu Dhabi</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“The guidance is simple and clear. I don’t feel lost during the sessions.”</p>
-                <p class="testimonial-meta">Deepak · Mangalore</p>
-              </article>
-              <article class="testimonial-card">
-                <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <p class="testimonial-quote">“It’s become a small habit in my day. Even 30–40 minutes makes a difference.”</p>
-                <p class="testimonial-meta">Sneha · Mangalore</p>
-              </article>
+        <div class="testimonials-motion-block" data-google-reviews data-motion style="--motion-delay: 130ms">
+          <div class="google-reviews-fallback" data-reviews-fallback>
+            <div class="google-reviews-panel">
+              <div class="google-reviews-panel__copy">
+                <div class="google-reviews-brand">
+                  <span class="google-g" aria-hidden="true">G</span>
+                  <span>PsyYogshala on Google</span>
+                </div>
+                <p>
+                  Our Google Business Profile carries the latest student reviews.
+                  Open the listing to read them in full, or share how class has felt for you.
+                </p>
+                <div class="button-row center-row google-reviews-actions">
+                  <a class="btn btn-primary" href="https://maps.app.goo.gl/9u9xJYySYaHkw9UM9" target="_blank" rel="noopener noreferrer">Read Google Reviews</a>
+                  <a class="btn btn-light" href="https://search.google.com/local/writereview?cid=501252956521389804" target="_blank" rel="noopener noreferrer">Write a Review</a>
+                </div>
+              </div>
+              <div class="google-reviews-map">
+                <iframe
+                  title="PsyYogshala on Google Maps"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.4365367833443!2d74.84621707541991!3d12.879627587427384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35b56e4f792ad%3A0x6f4cee880125eec!2spsyyogshala!5e0!3m2!1sen!2sin!4v1787168725337!5m2!1sen!2sin"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                ></iframe>
+              </div>
             </div>
           </div>
-          <button type="button" class="carousel-btn carousel-next" aria-label="Next testimonial">›</button>
-        </div>
-        <div class="carousel-dots" role="tablist" aria-label="Choose testimonial"></div>
+          <div class="testimonial-carousel" data-carousel tabindex="0" hidden>
+            <button type="button" class="carousel-btn carousel-prev" aria-label="Previous review">‹</button>
+            <div class="carousel-viewport">
+              <div class="carousel-track"></div>
+            </div>
+            <button type="button" class="carousel-btn carousel-next" aria-label="Next review">›</button>
+          </div>
+          <div class="carousel-dots" role="tablist" aria-label="Choose review" hidden></div>
         </div>
       </div>
     </section>
@@ -388,15 +327,14 @@
       <div class="container container-cta-home">
         <div class="cta-box cta-box--home" data-motion>
           <div class="cta-box-text">
-            <p class="cta-eyebrow">Ready when you are</p>
-            <h2>Let’s Grow Stronger Together</h2>
+            <h2>Ready When You Are</h2>
             <p class="cta-box-lead">
               Begin your first guided class and build a practice that stays with you.
             </p>
           </div>
           <div class="cta-box-action cta-box-actions-home">
-            <a class="btn btn-cta" href="https://zohosecurepay.in/checkout/n10kfpui-qpbxptgtydyrc/Drop-In-Pass" target="_blank" rel="noopener noreferrer">Book your Class</a>
-            <a class="btn btn-cta-secondary" href="/studio">View Schedule</a>
+            <a class="btn btn-cta" href="https://zohosecurepay.in/checkout/n10kfpui-qpbxptgtydyrc/Drop-In-Pass" target="_blank" rel="noopener noreferrer">Book Your Class</a>
+            <a class="btn btn-cta-secondary" href="/programs">View Programs</a>
           </div>
         </div>
       </div>
@@ -449,6 +387,8 @@
   <script src="sheet-config.js" defer></script>
   <script src="sheet-submit.js" defer></script>
   <script src="motion.js" defer></script>
+  <script src="hero-carousel.js?v=4" defer></script>
+  <script src="google-reviews.js" defer></script>
   <script src="carousel.js" defer></script>
 </body>
 </html>
