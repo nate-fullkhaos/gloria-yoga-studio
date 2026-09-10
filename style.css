@@ -247,6 +247,18 @@ a {
   margin-bottom: 0;
 }
 
+.trust-link {
+  color: var(--primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+.trust-link:hover,
+.trust-link:focus-visible {
+  color: var(--primary);
+}
+
 .split {
   display: grid;
   gap: 1rem;
