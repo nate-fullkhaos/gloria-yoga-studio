@@ -1507,6 +1507,17 @@ select {
   transform: scale(1.08);
 }
 
+.studio-hero-cinematic .hero-carousel__slide.is-active {
+  transform: scale(1.18);
+}
+
+.studio-hero-cinematic video.hero-carousel__slide,
+.studio-hero-cinematic video.hero-carousel__slide.is-active {
+  object-fit: cover;
+  transform: none;
+  background: #1c1916;
+}
+
 .home-hero--cinematic .home-hero__veil {
   position: absolute;
   inset: 0;
@@ -1597,6 +1608,36 @@ select {
 .home-hero--cinematic .btn-hero-text:hover {
   color: #fff;
   transform: none;
+}
+
+.studio-page .home-hero--cinematic .btn-cta-secondary {
+  border-radius: 999px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 0.92rem;
+  padding: 0.82rem 1.45rem;
+  color: rgba(250, 245, 238, 0.95);
+  border-color: rgba(255, 255, 255, 0.55);
+  background: transparent;
+  box-shadow: none;
+}
+
+.studio-page .home-hero--cinematic .btn-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.85);
+  color: #fff;
+}
+
+.studio-hero-overlay__meta {
+  margin: 1.75rem 0 0;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(250, 245, 238, 0.78);
+  max-width: 40rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2327,6 +2368,18 @@ select {
   .home-hero--cinematic .btn-primary,
   .home-hero--cinematic .btn-hero-text {
     width: 100%;
+    text-align: center;
+  }
+
+  .studio-page .home-hero-copy--overlay .button-row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .studio-page .home-hero--cinematic .btn-primary,
+  .studio-page .home-hero--cinematic .btn-cta-secondary {
+    width: auto;
+    flex: 1 1 auto;
     text-align: center;
   }
 
@@ -4268,6 +4321,31 @@ select {
 .studio-tabs__panel {
   animation: studio-fade 0.4s var(--studio-ease);
 }
+.studio-tabs__panel[hidden] {
+  display: none;
+}
+
+.studio-membership-tabs {
+  max-width: 72rem;
+}
+.studio-membership-tabs .studio-tabs__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto 1.75rem;
+}
+.studio-membership-tabs .studio-tabs__btn {
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: nowrap;
+}
+.studio-membership-tabs .studio-price-card {
+  max-width: 32rem;
+  margin-inline: auto;
+  text-align: left;
+}
 @keyframes studio-fade {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
@@ -4814,6 +4892,7 @@ select {
   background: linear-gradient(160deg, #fff 0%, #f7f2e8 100%);
   border-color: rgba(106, 127, 114, 0.35);
   box-shadow: 0 20px 44px rgba(58, 52, 44, 0.10);
+  padding-top: 1.85rem;
 }
 .studio-price-card__tag {
   align-self: flex-start;
@@ -4871,6 +4950,10 @@ select {
   text-transform: uppercase;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
+}
+.studio-price-card--accent .studio-price-card__ribbon {
+  background: var(--studio-sage-dark);
+  color: #fff;
 }
 
 /* ============================================================
@@ -5057,6 +5140,10 @@ select {
   }
   .studio-tabs__nav { width: 100%; justify-content: center; }
   .studio-tabs__btn { flex: 1 1 auto; }
+  .studio-membership-tabs .studio-tabs__btn {
+    flex: 1 1 calc(50% - 0.4rem);
+    white-space: normal;
+  }
   .studio-segments__control { width: 100%; }
   .studio-segments__btn { flex: 1 1 auto; }
   .studio-hero__badge-price { font-size: 1.35rem; }
