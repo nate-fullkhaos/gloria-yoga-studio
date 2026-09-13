@@ -1,0 +1,40 @@
+[
+  {
+    "day": "Monday",
+    "slots": [
+      { "time": "07:00 AM - 08:00 AM", "title": "Sunrise FLOW", "mode": "Online & In-Studio" },
+      { "time": "09:00 AM - 10:00 AM", "title": "Hatha FLOW", "mode": "Online & In-Studio" },
+      { "time": "08:00 PM - 09:00 PM", "title": "Twilight FLOW", "mode": "Online & In-Studio" }
+    ]
+  },
+  {
+    "day": "Tuesday",
+    "slots": [
+      { "time": "09:00 AM - 10:00 AM", "title": "Hatha FLOW", "mode": "Online & In-Studio" },
+      { "time": "07:00 PM - 08:00 PM", "title": "Foundational FLOW", "mode": "Online & In-Studio" }
+    ]
+  },
+  {
+    "day": "Wednesday",
+    "slots": [
+      { "time": "07:00 AM - 08:00 AM", "title": "Sunrise FLOW", "mode": "Online & In-Studio" },
+      { "time": "09:00 AM - 10:00 AM", "title": "Hatha FLOW", "mode": "Online & In-Studio" },
+      { "time": "08:00 PM - 09:00 PM", "title": "Twilight FLOW", "mode": "Online & In-Studio" }
+    ]
+  },
+  {
+    "day": "Thursday",
+    "slots": [
+      { "time": "09:00 AM - 10:00 AM", "title": "Hatha FLOW", "mode": "Online & In-Studio" },
+      { "time": "07:00 PM - 08:00 PM", "title": "Foundational FLOW", "mode": "Online & In-Studio" }
+    ]
+  },
+  {
+    "day": "Friday",
+    "slots": [
+      { "time": "07:00 AM - 08:00 AM", "title": "Sunrise FLOW", "mode": "Online & In-Studio" },
+      { "time": "09:00 AM - 10:00 AM", "title": "Hatha FLOW", "mode": "Online & In-Studio" },
+      { "time": "08:00 PM - 09:00 PM", "title": "Twilight FLOW", "mode": "Online & In-Studio" }
+    ]
+  }
+]
