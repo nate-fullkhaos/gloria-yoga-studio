@@ -9,4 +9,5 @@ Images/*.HEIC
 Images/*.heic
 Images/*.pdf
 Images/*.mp4
+!Images/studio-reel-*.mp4
 Images/old*
