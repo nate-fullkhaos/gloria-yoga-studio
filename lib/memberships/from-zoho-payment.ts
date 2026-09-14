@@ -18,6 +18,7 @@ const PAGE_RULES: Array<{
   {
     needles: [
       'n10kfpui-qpbxptgtydyrc',
+      '3641595000000071012',
       'drop-in-pass',
       'drop_in',
       'drop-in',
@@ -81,10 +82,10 @@ export function normalizeAmount(amount: string | number | undefined): string {
 }
 
 export function resolveMembershipGrant(
-  paymentPage: string | undefined,
+  paymentPage: string | number | undefined,
   amount: string | number | undefined
 ): MembershipGrant | null {
-  const page = (paymentPage ?? '').trim().toLowerCase()
+  const page = String(paymentPage ?? '').trim().toLowerCase()
 
   if (page) {
     const matched = PAGE_RULES.find(({ needles }) =>

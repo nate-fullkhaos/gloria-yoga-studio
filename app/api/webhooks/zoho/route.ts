@@ -12,10 +12,12 @@ type ZohoPaymentPayload = {
   email?: string
   name?: string
   phone?: string
-  payment_page?: string
+  payment_page?: string | number
   amount?: string | number
   transaction_id?: string
 }
+
+const ZOHO_DROP_IN_PAGE_ID = '3641595000000071012'
 
 function unauthorized() {
   return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 })
@@ -59,11 +61,16 @@ export async function POST(req: Request) {
     )
   }
 
+  const paymentPageFromPayload = String(parsed.payment_page ?? '')
+  const payment_page = rawText.includes(ZOHO_DROP_IN_PAGE_ID)
+    ? `${paymentPageFromPayload} ${ZOHO_DROP_IN_PAGE_ID}`.trim()
+    : paymentPageFromPayload
+
   const body: ZohoPaymentPayload = {
     email: parsed.email,
     name: parsed.name,
     phone: parsed.phone,
-    payment_page: parsed.payment_page,
+    payment_page,
     amount: parsed.amount,
     transaction_id: parsed.transaction_id,
   }
