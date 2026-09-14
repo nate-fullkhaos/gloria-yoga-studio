@@ -1,10 +1,10 @@
+import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 import {
   addCalendarMonths,
   resolveMembershipGrant,
   todayYmdInKolkata,
 } from '@/lib/memberships/from-zoho-payment'
-import { createSupabaseAdminClient } from '@/lib/supabase/admin'
 
 export const runtime = 'nodejs'
 
@@ -110,7 +110,21 @@ export async function POST(req: Request) {
       )
     }
 
-    const supabase = createSupabaseAdminClient()
+    if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'SUPABASE_SERVICE_ROLE_KEY is missing in Vercel environment variables',
+        },
+        { status: 200 }
+      )
+    }
+
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      { auth: { persistSession: false } }
+    )
 
     const { data: existingPractitioner, error: lookupError } = await supabase
       .from('practitioners')
