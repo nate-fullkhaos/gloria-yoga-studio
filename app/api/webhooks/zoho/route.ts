@@ -112,28 +112,46 @@ export async function POST(req: Request) {
 
     const supabase = createSupabaseAdminClient()
 
-    const { data: practitioner, error: practitionerError } = await supabase
+    const { data: existingPractitioner, error: lookupError } = await supabase
       .from('practitioners')
-      .upsert(
-        {
-          email,
-          full_name: name,
-          phone,
-        },
-        { onConflict: 'email' }
-      )
       .select('id')
-      .single()
+      .eq('email', email)
+      .maybeSingle()
 
-    if (practitionerError || !practitioner) {
-      throw new Error(practitionerError?.message || 'Failed to upsert practitioner')
+    if (lookupError) {
+      throw new Error(lookupError.message || 'Failed to look up practitioner')
+    }
+
+    let practitionerId = existingPractitioner?.id
+
+    if (practitionerId) {
+      const { error: updateError } = await supabase
+        .from('practitioners')
+        .update({ name, phone })
+        .eq('email', email)
+
+      if (updateError) {
+        throw new Error(updateError.message || 'Failed to update practitioner')
+      }
+    } else {
+      const { data: insertedPractitioner, error: insertError } = await supabase
+        .from('practitioners')
+        .insert({ email, name, phone })
+        .select('id')
+        .single()
+
+      if (insertError || !insertedPractitioner) {
+        throw new Error(insertError?.message || 'Failed to insert practitioner')
+      }
+
+      practitionerId = insertedPractitioner.id
     }
 
     const startDate = todayYmdInKolkata()
     const endDate = addCalendarMonths(startDate, grant.durationMonths)
 
     const { error: membershipError } = await supabase.from('memberships').insert({
-      practitioner_id: practitioner.id,
+      practitioner_id: practitionerId,
       type: grant.type,
       credits_remaining: grant.creditsRemaining,
       start_date: startDate,
