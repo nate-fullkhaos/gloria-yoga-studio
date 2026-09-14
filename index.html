@@ -81,7 +81,7 @@
   ]
 }
 </script>
-  <link rel="stylesheet" href="style.css?v=home-hero-4">
+  <link rel="stylesheet" href="style.css?v=home-live-1">
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -150,6 +150,51 @@
             Explore the Studio
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-compact live-pulse-section" aria-label="Upcoming class">
+      <div class="container">
+        <div class="live-pulse" data-live-pulse data-motion data-state="next">
+          <div class="live-pulse__signal" aria-hidden="true">
+            <span class="live-pulse__dot"></span>
+          </div>
+          <div class="live-pulse__copy">
+            <p class="live-pulse__kicker" data-pulse-kicker>Next class</p>
+            <h2 class="live-pulse__title" data-pulse-title>Loading the studio clock…</h2>
+            <p class="live-pulse__meta" data-pulse-meta>Mangaluru time · in-studio and live online</p>
+          </div>
+          <p class="live-pulse__countdown" data-pulse-countdown>Checking today's flow</p>
+          <a class="btn btn-primary live-pulse__cta" data-pulse-cta href="https://zohosecurepay.in/checkout/n10kfpui-qpbxptgtydyrc/Drop-In-Pass" target="_blank" rel="noopener noreferrer">Reserve your mat</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft social-feed-section" aria-labelledby="social-feed-heading">
+      <div class="container">
+        <div class="social-feed" data-social-feed>
+          <div class="social-feed__intro" data-motion>
+            <p class="eyebrow">Live from the studio</p>
+            <h2 id="social-feed-heading">The practice, as it unfolds</h2>
+            <p class="social-feed__lead">
+              Fresh class films from YouTube, plus Instagram and Facebook so you can step into the room before you arrive.
+            </p>
+            <div class="social-feed__filters" data-social-filters role="group" aria-label="Filter social feed">
+              <button type="button" class="social-filter" data-social-filter="all" aria-pressed="true">All</button>
+              <button type="button" class="social-filter" data-social-filter="youtube" aria-pressed="false">YouTube</button>
+              <button type="button" class="social-filter" data-social-filter="instagram" aria-pressed="false">Instagram</button>
+              <button type="button" class="social-filter" data-social-filter="facebook" aria-pressed="false">Facebook</button>
+            </div>
+            <p class="social-feed__status" data-social-status>Gathering the latest posts…</p>
+          </div>
+          <div class="social-feed__grid" data-social-grid data-motion style="--motion-delay: 80ms"></div>
+          <dialog class="social-player" data-social-player aria-label="Class film">
+            <button type="button" class="social-player__close" data-social-close aria-label="Close video">Close</button>
+            <div class="social-player__frame">
+              <iframe data-social-frame title="PsyYogshala class film" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </dialog>
         </div>
       </div>
     </section>
@@ -323,6 +368,29 @@
       </div>
     </section>
 
+    <section class="section section-soft breath-section" aria-labelledby="breath-heading">
+      <div class="container">
+        <div class="breath-card" data-breath data-motion>
+          <div class="breath-card__copy">
+            <p class="eyebrow">A minute for yourself</p>
+            <h2 id="breath-heading">Breathe with the studio</h2>
+            <p class="breath-card__lead">
+              Four counts in, four to hold, four out, four to rest. Today's intention:
+              <strong data-breath-intention>Arrive in this body.</strong>
+            </p>
+            <p class="breath-card__phase" data-breath-phase>Ready when you are</p>
+            <p class="breath-card__timer" data-breath-timer>1:00</p>
+            <button type="button" class="btn btn-primary" data-breath-toggle>Begin 1-minute breath</button>
+          </div>
+          <div class="breath-card__visual" aria-hidden="true">
+            <div class="breath-orb" data-breath-circle>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section-compact section-cta section-cta-home">
       <div class="container container-cta-home">
         <div class="cta-box cta-box--home" data-motion>
@@ -390,5 +458,8 @@
   <script src="hero-carousel.js?v=5" defer></script>
   <script src="google-reviews.js" defer></script>
   <script src="carousel.js" defer></script>
+  <script src="live-pulse.js" defer></script>
+  <script src="social-feed.js" defer></script>
+  <script src="breath-practice.js" defer></script>
 </body>
 </html>
