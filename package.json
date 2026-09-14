@@ -2,7 +2,9 @@
   "name": "psyyogshala",
   "private": true,
   "scripts": {
+    "predev": "node scripts/copy-static.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/copy-static.mjs",
     "build": "next build",
     "start": "next start"
   },
