@@ -33,42 +33,62 @@ function isAuthorized(request: Request): boolean {
   return headerSecret === secret || bearer === secret
 }
 
-export async function POST(request: Request) {
-  if (!isAuthorized(request)) {
+function parseWebhookBody(rawText: string, contentType: string): ZohoPaymentPayload {
+  if (contentType.includes('application/x-www-form-urlencoded')) {
+    return Object.fromEntries(new URLSearchParams(rawText)) as ZohoPaymentPayload
+  }
+
+  return JSON.parse(rawText) as ZohoPaymentPayload
+}
+
+export async function POST(req: Request) {
+  if (!isAuthorized(req)) {
     return unauthorized()
   }
 
-  let payload: ZohoPaymentPayload
+  const rawText = await req.text()
+  const contentType = req.headers.get('content-type') ?? ''
+
+  let parsed: ZohoPaymentPayload
   try {
-    payload = (await request.json()) as ZohoPaymentPayload
+    parsed = parseWebhookBody(rawText, contentType)
   } catch {
     return NextResponse.json(
-      { success: false, error: 'Invalid JSON body' },
+      { success: false, error: 'Invalid request body' },
       { status: 400 }
     )
   }
 
-  console.log('[zoho webhook] received payload', payload)
+  const body: ZohoPaymentPayload = {
+    email: parsed.email,
+    name: parsed.name,
+    phone: parsed.phone,
+    payment_page: parsed.payment_page,
+    amount: parsed.amount,
+    transaction_id: parsed.transaction_id,
+  }
 
-  const email = payload.email?.trim().toLowerCase()
-  const name = payload.name?.trim()
-  const phone = payload.phone?.trim() ?? null
+  console.log('[zoho webhook] received payload', body)
+
+  const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : ''
+  const name = typeof body.name === 'string' ? body.name.trim() : ''
+  const phone = typeof body.phone === 'string' ? body.phone.trim() : null
 
   if (!email || !name) {
     return NextResponse.json(
-      { success: false, error: 'email and name are required' },
+      { success: false, error: 'email and name are required', received: body },
       { status: 400 }
     )
   }
 
-  const grant = resolveMembershipGrant(payload.payment_page, payload.amount)
+  const grant = resolveMembershipGrant(body.payment_page, body.amount)
   if (!grant) {
     return NextResponse.json(
       {
         success: false,
         error: 'Unrecognized payment_page or amount',
-        payment_page: payload.payment_page ?? null,
-        amount: payload.amount ?? null,
+        payment_page: body.payment_page ?? null,
+        amount: body.amount ?? null,
       },
       { status: 400 }
     )
@@ -120,14 +140,14 @@ export async function POST(request: Request) {
 
     console.log('[zoho webhook] membership granted', {
       email,
-      transaction_id: payload.transaction_id ?? null,
+      transaction_id: body.transaction_id ?? null,
       type: grant.type,
       credits_remaining: grant.creditsRemaining,
       start_date: startDate,
       end_date: endDate,
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true, data: body })
   } catch (error) {
     console.error('[zoho webhook] unexpected error', error)
     return NextResponse.json(
