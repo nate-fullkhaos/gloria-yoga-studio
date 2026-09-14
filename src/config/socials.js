@@ -14,6 +14,11 @@ export const SOCIAL_LINKS = {
     url: "https://www.youtube.com/@psyyogshala",
     label: "Psy Yogshala YouTube Channel"
   },
+  facebook: {
+    handle: "psyyogshala",
+    url: "https://www.facebook.com/psyyogshala",
+    label: "Psy Yogshala on Facebook"
+  },
   whatsapp: {
     title: "Psy Yogshala WhatsApp Community",
     url: "https://chat.whatsapp.com/G9WwOKYK3ZZ2syPwsGCQZx",
