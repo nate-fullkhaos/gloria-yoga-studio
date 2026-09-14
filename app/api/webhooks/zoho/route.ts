@@ -1,10 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-import {
-  addCalendarMonths,
-  resolveMembershipGrant,
-  todayYmdInKolkata,
-} from '@/lib/memberships/from-zoho-payment'
+import { resolveMembershipGrant } from '@/lib/memberships/from-zoho-payment'
 
 export const runtime = 'nodejs'
 
@@ -116,7 +112,7 @@ export async function POST(req: Request) {
 
     const { data: existingPractitioner, error: lookupError } = await supabase
       .from('practitioners')
-      .select('id')
+      .select('id, credits')
       .eq('email', email)
       .maybeSingle()
 
@@ -124,54 +120,40 @@ export async function POST(req: Request) {
       throw new Error(lookupError.message || 'Failed to look up practitioner')
     }
 
-    let practitionerId = existingPractitioner?.id
+    const creditsToAdd = grant.creditsRemaining
 
-    if (practitionerId) {
+    if (existingPractitioner?.id) {
+      const currentCredits = Number(existingPractitioner.credits ?? 0)
       const { error: updateError } = await supabase
         .from('practitioners')
-        .update({ name, phone })
+        .update({
+          name,
+          phone,
+          credits: currentCredits + creditsToAdd,
+        })
         .eq('email', email)
 
       if (updateError) {
         throw new Error(updateError.message || 'Failed to update practitioner')
       }
     } else {
-      const { data: insertedPractitioner, error: insertError } = await supabase
-        .from('practitioners')
-        .insert({ email, name, phone })
-        .select('id')
-        .single()
+      const { error: insertError } = await supabase.from('practitioners').insert({
+        email,
+        name,
+        phone,
+        credits: creditsToAdd,
+      })
 
-      if (insertError || !insertedPractitioner) {
-        throw new Error(insertError?.message || 'Failed to insert practitioner')
+      if (insertError) {
+        throw new Error(insertError.message || 'Failed to insert practitioner')
       }
-
-      practitionerId = insertedPractitioner.id
     }
 
-    const startDate = todayYmdInKolkata()
-    const endDate = addCalendarMonths(startDate, grant.durationMonths)
-
-    const { error: membershipError } = await supabase.from('memberships').insert({
-      practitioner_id: practitionerId,
-      type: grant.type,
-      credits_remaining: grant.creditsRemaining,
-      start_date: startDate,
-      end_date: endDate,
-      status: 'ACTIVE',
-    })
-
-    if (membershipError) {
-      throw new Error(membershipError.message || 'Failed to grant membership')
-    }
-
-    console.log('[zoho webhook] membership granted', {
+    console.log('[zoho webhook] credits granted', {
       email,
       transaction_id: body.transaction_id ?? null,
       type: grant.type,
-      credits_remaining: grant.creditsRemaining,
-      start_date: startDate,
-      end_date: endDate,
+      credits_added: creditsToAdd,
     })
 
     return NextResponse.json({ success: true, data: body })
