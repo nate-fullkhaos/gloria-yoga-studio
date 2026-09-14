@@ -61,6 +61,8 @@ const FALLBACK_POSTS: SocialPost[] = [
     isShort: true,
   },
 ]
+
+const PROFILES: SocialProfile[] = [
   {
     network: 'instagram',
     handle: '@psyyogshala',
@@ -111,9 +113,9 @@ function parseYoutubeRss(xml: string): SocialPost[] {
   return xml
     .split('<entry>')
     .slice(1)
-    .map((entry) => {
+    .flatMap((entry) => {
       const videoId = matchGroup(entry, /<yt:videoId>([^<]+)<\/yt:videoId>/)
-      if (!videoId) return null
+      if (!videoId) return []
       const title = matchGroup(entry, /<media:title>([^<]*)<\/media:title>/) || matchGroup(entry, /<title>([^<]*)<\/title>/)
       const link = matchGroup(entry, /<link rel="alternate" href="([^"]+)"/)
       const publishedAt = matchGroup(entry, /<published>([^<]+)<\/published>/) || null
@@ -122,9 +124,9 @@ function parseYoutubeRss(xml: string): SocialPost[] {
       const views = viewsRaw ? Number(viewsRaw) : undefined
       const url = link || `https://www.youtube.com/watch?v=${videoId}`
 
-      return {
+      const post: SocialPost = {
         id: `yt-${videoId}`,
-        network: 'youtube' as const,
+        network: 'youtube',
         title: title || 'PsyYogshala on YouTube',
         url,
         image: thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
@@ -132,8 +134,8 @@ function parseYoutubeRss(xml: string): SocialPost[] {
         views: Number.isFinite(views) ? views : undefined,
         isShort: /\/shorts\//.test(url),
       }
+      return [post]
     })
-    .filter((post): post is SocialPost => Boolean(post))
 }
 
 type InstagramMedia = {
@@ -158,21 +160,20 @@ async function fetchInstagramPosts(): Promise<SocialPost[]> {
   if (!response.ok) return []
 
   const payload = (await response.json()) as { data?: InstagramMedia[] }
-  return (payload.data ?? [])
-    .map((item) => {
-      const image = item.thumbnail_url || item.media_url
-      if (!image || !item.permalink) return null
-      const caption = (item.caption || 'Practice from PsyYogshala').split('\n')[0]
-      return {
-        id: `ig-${item.id}`,
-        network: 'instagram' as const,
-        title: caption.slice(0, 90),
-        url: item.permalink,
-        image,
-        publishedAt: item.timestamp ?? null,
-      }
-    })
-    .filter((post): post is SocialPost => Boolean(post))
+  return (payload.data ?? []).flatMap((item) => {
+    const image = item.thumbnail_url || item.media_url
+    if (!image || !item.permalink) return []
+    const caption = (item.caption || 'Practice from PsyYogshala').split('\n')[0]
+    const post: SocialPost = {
+      id: `ig-${item.id}`,
+      network: 'instagram',
+      title: caption.slice(0, 90),
+      url: item.permalink,
+      image,
+      publishedAt: item.timestamp ?? null,
+    }
+    return [post]
+  })
 }
 
 async function fetchYoutubePosts(): Promise<SocialPost[]> {
