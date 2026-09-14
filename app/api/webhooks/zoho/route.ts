@@ -43,14 +43,13 @@ function parseWebhookBody(rawText: string, contentType: string): ZohoPaymentPayl
   return JSON.parse(rawText) as ZohoPaymentPayload
 }
 
-function runtimeErrorResponse(error: unknown) {
-  console.error("Zoho Webhook Error:", error)
-  const message =
-    error instanceof Error && error.message
-      ? error.message
-      : 'Server runtime error'
-
-  return NextResponse.json({ success: false, error: message }, { status: 500 })
+function failsafeErrorResponse(err: unknown) {
+  console.error("Zoho Webhook Error:", err)
+  const error = err instanceof Error ? err : new Error(String(err))
+  return NextResponse.json(
+    { success: false, error: error.message, stack: error.stack },
+    { status: 200 }
+  )
 }
 
 export async function POST(req: Request) {
@@ -72,10 +71,9 @@ export async function POST(req: Request) {
       )
     }
 
-    const paymentPageFromPayload = String(parsed.payment_page ?? '')
     const payment_page = rawText.includes(ZOHO_DROP_IN_PAGE_ID)
-      ? `${paymentPageFromPayload} ${ZOHO_DROP_IN_PAGE_ID}`.trim()
-      : paymentPageFromPayload
+      ? String(ZOHO_DROP_IN_PAGE_ID)
+      : String(parsed.payment_page ?? '')
 
     const body: ZohoPaymentPayload = {
       email: parsed.email,
@@ -99,7 +97,7 @@ export async function POST(req: Request) {
       )
     }
 
-    const grant = resolveMembershipGrant(body.payment_page, body.amount)
+    const grant = resolveMembershipGrant(String(payment_page), body.amount)
     if (!grant) {
       return NextResponse.json(
         {
@@ -112,70 +110,52 @@ export async function POST(req: Request) {
       )
     }
 
-    try {
-      const supabase = createSupabaseAdminClient()
+    const supabase = createSupabaseAdminClient()
 
-      const { data: practitioner, error: practitionerError } = await supabase
-        .from('practitioners')
-        .upsert(
-          {
-            email,
-            full_name: name,
-            phone,
-          },
-          { onConflict: 'email' }
-        )
-        .select('id')
-        .single()
+    const { data: practitioner, error: practitionerError } = await supabase
+      .from('practitioners')
+      .upsert(
+        {
+          email,
+          full_name: name,
+          phone,
+        },
+        { onConflict: 'email' }
+      )
+      .select('id')
+      .single()
 
-      if (practitionerError || !practitioner) {
-        console.error('Zoho Webhook Error:', practitionerError)
-        return NextResponse.json(
-          {
-            success: false,
-            error: practitionerError?.message || 'Failed to upsert practitioner',
-          },
-          { status: 500 }
-        )
-      }
-
-      const startDate = todayYmdInKolkata()
-      const endDate = addCalendarMonths(startDate, grant.durationMonths)
-
-      const { error: membershipError } = await supabase.from('memberships').insert({
-        practitioner_id: practitioner.id,
-        type: grant.type,
-        credits_remaining: grant.creditsRemaining,
-        start_date: startDate,
-        end_date: endDate,
-        status: 'ACTIVE',
-      })
-
-      if (membershipError) {
-        console.error('Zoho Webhook Error:', membershipError)
-        return NextResponse.json(
-          {
-            success: false,
-            error: membershipError.message || 'Failed to grant membership',
-          },
-          { status: 500 }
-        )
-      }
-
-      console.log('[zoho webhook] membership granted', {
-        email,
-        transaction_id: body.transaction_id ?? null,
-        type: grant.type,
-        credits_remaining: grant.creditsRemaining,
-        start_date: startDate,
-        end_date: endDate,
-      })
-
-      return NextResponse.json({ success: true, data: body })
-    } catch (error) {
-      return runtimeErrorResponse(error)
+    if (practitionerError || !practitioner) {
+      throw new Error(practitionerError?.message || 'Failed to upsert practitioner')
     }
-  } catch (error) {
-    return runtimeErrorResponse(error)
+
+    const startDate = todayYmdInKolkata()
+    const endDate = addCalendarMonths(startDate, grant.durationMonths)
+
+    const { error: membershipError } = await supabase.from('memberships').insert({
+      practitioner_id: practitioner.id,
+      type: grant.type,
+      credits_remaining: grant.creditsRemaining,
+      start_date: startDate,
+      end_date: endDate,
+      status: 'ACTIVE',
+    })
+
+    if (membershipError) {
+      throw new Error(membershipError.message || 'Failed to grant membership')
+    }
+
+    console.log('[zoho webhook] membership granted', {
+      email,
+      transaction_id: body.transaction_id ?? null,
+      type: grant.type,
+      credits_remaining: grant.creditsRemaining,
+      start_date: startDate,
+      end_date: endDate,
+    })
+
+    return NextResponse.json({ success: true, data: body })
+  } catch (err) {
+    return failsafeErrorResponse(err)
   }
 }
