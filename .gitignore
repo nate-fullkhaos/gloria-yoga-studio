@@ -6,6 +6,8 @@
 node_modules
 .next
 .env*.local
+/public
+
 
 # Source / unused studio media — keep these out of git
 Images/*.HEIC
